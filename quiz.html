@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mock Quiz - Question Solver</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Medical Quiz - PDF Verified</h1>
+            <div id="progress-info"></div>
+        </header>
+
+        <div class="main-content">
+            <!-- Left Sidebar with Statistics -->
+            <div class="sidebar">
+                <div class="stats-box">
+                    <h3>Quiz Statistics</h3>
+                    <div class="stat-item">
+                        <div class="stat-label">Total Questions</div>
+                        <div class="stat-value" id="total-questions">97</div>
+                    </div>
+                    <div class="stat-item correct">
+                        <div class="stat-label">Correct</div>
+                        <div class="stat-value" id="correct-count">0</div>
+                    </div>
+                    <div class="stat-item incorrect">
+                        <div class="stat-label">Incorrect</div>
+                        <div class="stat-value" id="incorrect-count">0</div>
+                    </div>
+                    <div class="stat-item remaining">
+                        <div class="stat-label">Remaining</div>
+                        <div class="stat-value" id="remaining-count">97</div>
+                    </div>
+                    <div class="stat-item score">
+                        <div class="stat-label">Score</div>
+                        <div class="stat-value" id="score-percentage">0%</div>
+                    </div>
+                </div>
+
+                <div class="progress-box">
+                    <h4>Progress</h4>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="progress-text" id="progress-text">0 / 97</div>
+                </div>
+
+                <div class="question-nav-box">
+                    <h4>Quick Navigation</h4>
+                    <div class="question-grid" id="question-grid"></div>
+                </div>
+            </div>
+
+            <!-- Main Quiz Content -->
+            <div class="quiz-container">
+                <div class="question-section">
+                    <div id="question-content"></div>
+                </div>
+
+                <div class="options-section">
+                    <form id="options-form"></form>
+                    
+                    <div class="controls-section">
+                        <button id="prev-btn" class="nav-btn" disabled>Previous</button>
+                        <button id="submit-btn" class="submit-btn">Submit Answer</button>
+                        <button id="next-btn" class="nav-btn" disabled>Next</button>
+                    </div>
+                    
+                    <div id="feedback" class="feedback"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/quiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+# Exclude development and testing files
+*.py
+!app.py
+
+# Exclude all JSON files except the production one
+data/*.json
+!data/mock1_production_final.json
+
+# Exclude PDF files (too large for GitHub)
+data/pdf/
+markdown_files/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
