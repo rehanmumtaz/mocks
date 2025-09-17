@@ -4,18 +4,35 @@ import os
 
 app = Flask(__name__)
 
-# Path to the production dataset
-DATA_PATH = os.path.join(os.path.dirname(__file__), 'data', 'mock1_production_final.json')
+# Path to the production dataset - try multiple locations
+possible_paths = [
+    os.path.join(os.path.dirname(__file__), 'data', 'mock1_production_final.json'),
+    os.path.join('data', 'mock1_production_final.json'),
+    'data/mock1_production_final.json',
+    './data/mock1_production_final.json'
+]
 
 # Load questions once at startup
-try:
-    with open(DATA_PATH, encoding='utf-8') as f:
-        data = json.load(f)
-        QUESTIONS = data.get('questions', [])  # Extract questions from production format
-        print(f"✅ Loaded {len(QUESTIONS)} questions from production dataset")
-except FileNotFoundError:
-    QUESTIONS = []
-    print(f"Warning: Could not find {DATA_PATH}")
+QUESTIONS = []
+for DATA_PATH in possible_paths:
+    try:
+        print(f"Trying to load: {DATA_PATH}")
+        with open(DATA_PATH, encoding='utf-8') as f:
+            data = json.load(f)
+            QUESTIONS = data.get('questions', [])  # Extract questions from production format
+            print(f"✅ Loaded {len(QUESTIONS)} questions from {DATA_PATH}")
+            break
+    except FileNotFoundError:
+        print(f"Not found: {DATA_PATH}")
+        continue
+
+if not QUESTIONS:
+    print("❌ ERROR: Could not load questions from any path!")
+    print("Available files in current directory:")
+    print(os.listdir('.'))
+    if os.path.exists('data'):
+        print("Files in data directory:")
+        print(os.listdir('data'))
 
 @app.route('/')
 def index():
